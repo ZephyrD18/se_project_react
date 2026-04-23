@@ -1,7 +1,7 @@
 import "./Header.css";
 import avatar from "../../assets/Avatar.svg";
 
-function Header() {
+function Header({ handleAddClick }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -15,7 +15,13 @@ function Header() {
       </div>
 
       <div className="header__right">
-        <button className="header__add-btn">+ Add clothes</button>
+        <button
+          type="button"
+          className="header__add-btn"
+          onClick={handleAddClick}
+        >
+          + Add clothes
+        </button>
 
         <p className="header__username">Terrence Tegene</p>
 

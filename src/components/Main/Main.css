@@ -1,5 +1,6 @@
 .main {
   padding-top: 28px;
+  flex: 1;
 }
 
 .main__description {

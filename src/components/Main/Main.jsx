@@ -2,7 +2,7 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 
-function Main({ weatherData, clothingItems }) {
+function Main({ weatherData, clothingItems, onCardClick }) {
   const filteredCards = clothingItems.filter((item) => {
     return item.weather === weatherData.type;
   });
@@ -18,7 +18,7 @@ function Main({ weatherData, clothingItems }) {
       <ul className="main__cards-list">
         {filteredCards.map((item) => (
           <li key={item._id} className="main__card-item">
-            <ItemCard item={item} />
+            <ItemCard item={item} onCardClick={onCardClick} />
           </li>
         ))}
       </ul>

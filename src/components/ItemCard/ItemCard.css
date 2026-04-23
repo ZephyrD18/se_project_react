@@ -54,3 +54,7 @@
   width: 226px;
   height: 226px;
 }
+
+.card {
+  cursor: pointer;
+}

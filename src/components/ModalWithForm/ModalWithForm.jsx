@@ -1,68 +1,57 @@
+import { useRef } from "react";
 import "./ModalWithForm.css";
 import closeIcon from "../../assets/CloseButton.svg";
 
-function ModalWithForm({ title, buttonText, isOpen, onClose }) {
-  const handleOverlayClose = (evt) => {
-    if (evt.target === evt.currentTarget) {
+function ModalWithForm({
+  title,
+  name,
+  buttonText,
+  isOpen,
+  onClose,
+  onSubmit,
+  isValid,
+  children,
+}) {
+  const overlayMouseDownRef = useRef(false);
+
+  const handleMouseDown = (evt) => {
+    overlayMouseDownRef.current = evt.target === evt.currentTarget;
+  };
+
+  const handleMouseUp = (evt) => {
+    const startedOnOverlay = overlayMouseDownRef.current;
+    const endedOnOverlay = evt.target === evt.currentTarget;
+
+    if (startedOnOverlay && endedOnOverlay) {
       onClose();
     }
+
+    overlayMouseDownRef.current = false;
   };
 
   return (
     <div
       className={`modal ${isOpen ? "modal_is-opened" : ""}`}
-      onClick={handleOverlayClose}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
     >
-      <div className="modal__content">
+      <div className="modal__content modal__content_type_form">
         <button type="button" className="modal__close" onClick={onClose}>
           <img src={closeIcon} alt="Close" className="modal__close-icon" />
         </button>
 
         <h2 className="modal__title">{title}</h2>
 
-        <form className="modal__form">
-          <label className="modal__label">
-            Name
-            <input type="text" className="modal__input" />
-          </label>
+        <form className="modal__form" name={name} onSubmit={onSubmit}>
+          {children}
 
-          <label className="modal__label">
-            Image
-            <input type="url" className="modal__input" />
-          </label>
-
-          <fieldset className="modal__fieldset">
-            <legend className="modal__legend">Select the weather type:</legend>
-
-            <label className="modal__radio-label">
-              <input
-                type="radio"
-                name="weather"
-                className="modal__radio-input"
-              />
-              Hot
-            </label>
-
-            <label className="modal__radio-label">
-              <input
-                type="radio"
-                name="weather"
-                className="modal__radio-input"
-              />
-              Warm
-            </label>
-
-            <label className="modal__radio-label">
-              <input
-                type="radio"
-                name="weather"
-                className="modal__radio-input"
-              />
-              Cold
-            </label>
-          </fieldset>
-
-          <button type="submit" className="modal__submit">
+          <button
+            type="submit"
+            className={`modal__submit ${
+              isValid ? "modal__submit_enabled" : ""
+            }`}
+            disabled={!isValid}
+          >
             {buttonText}
           </button>
         </form>

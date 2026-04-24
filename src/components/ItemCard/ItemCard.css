@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .card__name {
@@ -21,7 +22,6 @@
   padding: 2px 12px;
   border-radius: 4px;
   background-color: #ffffff;
-
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
@@ -32,29 +32,7 @@
 
 .card__image {
   display: block;
+  width: 85%;
+  height: 85%;
   object-fit: contain;
-}
-
-.card__image_type_tshirt {
-  width: 328px;
-  height: 328px;
-}
-
-.card__image_type_shorts {
-  width: 328px;
-  height: 328px;
-}
-
-.card__image_type_cap {
-  width: 328px;
-  height: 328px;
-}
-
-.card__image_type_sneakers {
-  width: 226px;
-  height: 226px;
-}
-
-.card {
-  cursor: pointer;
 }

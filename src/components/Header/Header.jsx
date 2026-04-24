@@ -1,7 +1,7 @@
 import "./Header.css";
 import avatar from "../../assets/Avatar.svg";
 
-function Header({ handleAddClick }) {
+function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -11,7 +11,9 @@ function Header({ handleAddClick }) {
     <header className="header">
       <div className="header__left">
         <p className="header__logo">wtwr°</p>
-        <p className="header__date-location">{currentDate}, New York</p>
+        <p className="header__date-location">
+          {currentDate}, {weatherData.city}
+        </p>
       </div>
 
       <div className="header__right">

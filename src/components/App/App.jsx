@@ -3,15 +3,17 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
-import defaultClothingItems from "../../utils/clothingItems";
+import { defaultClothingItems } from "../../utils/clothingItems";
+import { getWeather } from "../../utils/weatherApi";
 
 function App() {
-  const weatherData = {
+  const [weatherData, setWeatherData] = useState({
     temp: { F: 75 },
+    city: "",
     type: "hot",
-  };
+  });
 
   const [clothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
@@ -31,6 +33,16 @@ function App() {
   };
 
   useEffect(() => {
+    getWeather()
+      .then((data) => {
+        setWeatherData(data);
+      })
+      .catch((err) => {
+        console.error("Weather API error:", err);
+      });
+  }, []);
+
+  useEffect(() => {
     if (!activeModal) return undefined;
 
     const handleEscClose = (evt) => {
@@ -48,7 +60,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header handleAddClick={handleAddClick} />
+      <Header handleAddClick={handleAddClick} weatherData={weatherData} />
       <Main
         weatherData={weatherData}
         clothingItems={clothingItems}
@@ -56,9 +68,7 @@ function App() {
       />
       <Footer />
 
-      <ModalWithForm
-        title="New garment"
-        buttonText="Add garment"
+      <AddItemModal
         isOpen={activeModal === "add-garment"}
         onClose={handleCloseModal}
       />

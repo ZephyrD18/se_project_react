@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 /* LEFT SIDE */
@@ -17,6 +18,8 @@
   font-weight: 700;
   font-size: 32px;
   line-height: 100%;
+  color: #000;
+  text-decoration: none;
 }
 
 .header__date-location {
@@ -53,9 +56,62 @@
   font-size: 20px;
 }
 
+.header__profile-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #000;
+  text-decoration: none;
+}
+
 .header__avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.header__logo:hover,
+.header__profile-link:hover,
+.header__add-btn:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 900px) {
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .header__left,
+  .header__right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .header {
+    align-items: flex-start;
+  }
+
+  .header__left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .header__right {
+    gap: 12px;
+  }
+
+  .header__date-location,
+  .header__add-btn,
+  .header__username {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .header__username {
+    display: none;
+  }
 }

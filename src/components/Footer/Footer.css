@@ -17,3 +17,15 @@
 .footer__year {
   text-align: right;
 }
+
+@media screen and (max-width: 560px) {
+  .footer {
+    margin-top: 40px;
+  }
+
+  .footer__text,
+  .footer__year {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

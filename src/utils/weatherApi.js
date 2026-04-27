@@ -24,6 +24,7 @@ export function filterWeatherData(data) {
   return {
     temp: {
       F: temperature,
+      C: Math.round(((temperature - 32) * 5) / 9),
     },
     city: data.name,
     type: getWeatherCondition(temperature),
@@ -32,7 +33,7 @@ export function filterWeatherData(data) {
 
 export function getWeather() {
   return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${apiKey}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${apiKey}`,
   )
     .then(checkResponse)
     .then(filterWeatherData);

@@ -1,28 +1,38 @@
 # WTWR
 
-WTWR (What to Wear) is a React weather app that recommends clothing based on the current temperature. The app fetches weather data for a saved location, classifies the temperature as hot, warm, or cold, and displays matching clothing cards from the default item list.
+WTWR (What to Wear) is a React weather app that recommends clothing based on the current weather. It fetches live weather data, loads clothing items from a local JSON Server mock API, and lets users add, preview, and delete garments.
 
 ## Functionality
 
-- Displays the current date and location in the header
+- Displays the current date and weather location
 - Fetches current weather data from the OpenWeather API
-- Shows the current temperature in Fahrenheit
-- Filters clothing cards by weather type
-- Opens a preview modal when a clothing card is selected
-- Opens an add-garment modal with form validation
-- Supports closing modals with the close button, overlay click, or Escape key
+- Switches temperature display between Fahrenheit and Celsius
+- Filters main-page clothing cards by current weather type
+- Provides a profile page with all clothing items
+- Adds new garments through a controlled form
+- Opens item preview and delete confirmation modals
+- Stores clothing items through a JSON Server mock API
 
 ## Technologies and Techniques
 
-- React
+- React with functional components and hooks
+- React Router
+- Context API
+- Custom `useForm` hook
 - Vite
-- JSX
-- CSS organized by component
-- React state and effects
+- JSON Server
 - Fetch API
-- OpenWeather API
+- Component-scoped CSS
 - BEM-style class naming
 
-## Project Status
+## Running the Project
 
-This project was built for the TripleTen Software Engineering program.
+Install dependencies, then run the mock API and React app in separate terminals:
+
+```bash
+npm install
+npm run server
+npm run dev
+```
+
+The mock API runs at `http://localhost:3001`.

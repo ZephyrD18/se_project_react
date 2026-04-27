@@ -1,0 +1,69 @@
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.toggle-switch__checkbox {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.toggle-switch__slider {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  box-sizing: border-box;
+  border: 2px solid #7e7e7e;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #7e7e7e;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  overflow: hidden;
+}
+
+.toggle-switch__slider::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #000;
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch__label {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.toggle-switch__label_type_f {
+  color: #fff;
+}
+
+.toggle-switch__checkbox:checked + .toggle-switch__slider::before {
+  transform: translateX(28px);
+}
+
+.toggle-switch__checkbox:checked
+  + .toggle-switch__slider
+  .toggle-switch__label_type_f {
+  color: #7e7e7e;
+}
+
+.toggle-switch__checkbox:checked
+  + .toggle-switch__slider
+  .toggle-switch__label_type_c {
+  color: #fff;
+}

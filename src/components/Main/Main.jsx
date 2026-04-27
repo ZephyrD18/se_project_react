@@ -1,10 +1,15 @@
+import { useContext } from "react";
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherData, clothingItems, onCardClick }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const temp = weatherData.temp[currentTemperatureUnit];
+
   const filteredCards = clothingItems.filter((item) => {
-    return item.weather === weatherData.type;
+    return item.weather.toLowerCase() === weatherData.type;
   });
 
   return (
@@ -12,12 +17,12 @@ function Main({ weatherData, clothingItems, onCardClick }) {
       <WeatherCard weatherData={weatherData} />
 
       <p className="main__description">
-        Today is {weatherData.temp.F}° F / You may want to wear:
+        Today is {temp}&deg; {currentTemperatureUnit} / You may want to wear:
       </p>
 
       <ul className="main__cards-list">
         {filteredCards.map((item) => (
-          <li key={item._id} className="main__card-item">
+          <li key={item._id || item.id} className="main__card-item">
             <ItemCard item={item} onCardClick={onCardClick} />
           </li>
         ))}

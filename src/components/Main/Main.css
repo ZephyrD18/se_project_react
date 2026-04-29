@@ -23,3 +23,37 @@
 .main__card-item {
   margin: 0;
 }
+
+@media screen and (max-width: 1100px) {
+  .main__cards-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main__cards-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .main {
+    padding-top: 20px;
+  }
+
+  .main__description {
+    margin: 32px 0 20px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .main__cards-list {
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .main__cards-list {
+    grid-template-columns: 1fr;
+  }
+}

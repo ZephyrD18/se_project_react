@@ -36,3 +36,27 @@
   height: 85%;
   object-fit: contain;
 }
+
+.card:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    max-width: none;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .card {
+    border-radius: 12px;
+  }
+
+  .card__name {
+    top: 10px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

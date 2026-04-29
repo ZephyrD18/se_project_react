@@ -46,3 +46,17 @@
   height: auto;
   z-index: 2;
 }
+
+@media screen and (max-width: 560px) {
+  .weather-card {
+    height: 80px;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+
+  .weather-card__temp {
+    top: 22px;
+    font-size: 32px;
+    line-height: 36px;
+  }
+}

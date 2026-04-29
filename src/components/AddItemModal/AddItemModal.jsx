@@ -1,18 +1,12 @@
-import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
-function AddItemModal({ isOpen, onClose }) {
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
-
-  useEffect(() => {
-    if (!isOpen) {
-      setName("");
-      setImageUrl("");
-      setWeather("");
-    }
-  }, [isOpen]);
+function AddItemModal({ isOpen, onAddItem, onClose }) {
+  const { values, handleChange, resetForm } = useForm({
+    name: "",
+    imageUrl: "",
+    weather: "",
+  });
 
   const isValidUrl = (value) => {
     if (value.trim().length === 0) return false;
@@ -25,11 +19,14 @@ function AddItemModal({ isOpen, onClose }) {
     }
   };
 
-  const nameHasError = name.length > 0 && name.trim().length < 2;
-  const imageHasError = imageUrl.length > 0 && !isValidUrl(imageUrl);
+  const nameHasError = values.name.length > 0 && values.name.trim().length < 2;
+  const imageHasError =
+    values.imageUrl.length > 0 && !isValidUrl(values.imageUrl);
 
   const isFormValid =
-    name.trim().length >= 2 && isValidUrl(imageUrl) && weather !== "";
+    values.name.trim().length >= 2 &&
+    isValidUrl(values.imageUrl) &&
+    values.weather !== "";
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -38,10 +35,14 @@ function AddItemModal({ isOpen, onClose }) {
       return;
     }
 
-    setName("");
-    setImageUrl("");
-    setWeather("");
-    onClose();
+    onAddItem(
+      {
+        name: values.name.trim(),
+        imageUrl: values.imageUrl,
+        weather: values.weather,
+      },
+      resetForm,
+    );
   };
 
   return (
@@ -58,14 +59,15 @@ function AddItemModal({ isOpen, onClose }) {
         <span className="modal__label-text">Name</span>
         <input
           type="text"
+          name="name"
           className={`modal__input ${
             nameHasError ? "modal__input_type_error" : ""
           }`}
           placeholder="Name"
           minLength="2"
           required
-          value={name}
-          onChange={(evt) => setName(evt.target.value)}
+          value={values.name}
+          onChange={handleChange}
         />
         <span className="modal__error">
           {nameHasError ? "Minimum 2 characters required" : ""}
@@ -76,13 +78,14 @@ function AddItemModal({ isOpen, onClose }) {
         <span className="modal__label-text">Image</span>
         <input
           type="url"
+          name="imageUrl"
           className={`modal__input ${
             imageHasError ? "modal__input_type_error" : ""
           }`}
           placeholder="Image URL"
           required
-          value={imageUrl}
-          onChange={(evt) => setImageUrl(evt.target.value)}
+          value={values.imageUrl}
+          onChange={handleChange}
         />
         <span className="modal__error">
           {imageHasError ? "Must be a valid URL" : ""}
@@ -98,8 +101,8 @@ function AddItemModal({ isOpen, onClose }) {
             name="weather"
             className="modal__radio-input"
             value="hot"
-            checked={weather === "hot"}
-            onChange={(evt) => setWeather(evt.target.value)}
+            checked={values.weather === "hot"}
+            onChange={handleChange}
           />
           Hot
         </label>
@@ -110,8 +113,8 @@ function AddItemModal({ isOpen, onClose }) {
             name="weather"
             className="modal__radio-input"
             value="warm"
-            checked={weather === "warm"}
-            onChange={(evt) => setWeather(evt.target.value)}
+            checked={values.weather === "warm"}
+            onChange={handleChange}
           />
           Warm
         </label>
@@ -122,8 +125,8 @@ function AddItemModal({ isOpen, onClose }) {
             name="weather"
             className="modal__radio-input"
             value="cold"
-            checked={weather === "cold"}
-            onChange={(evt) => setWeather(evt.target.value)}
+            checked={values.weather === "cold"}
+            onChange={handleChange}
           />
           Cold
         </label>

@@ -1,0 +1,60 @@
+@import url("../ModalWithForm/ModalWithForm.css");
+
+.modal__content_type_confirmation {
+  width: 670px;
+  min-height: 280px;
+  padding: 60px 151px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.modal__content_type_confirmation .modal__close-icon {
+  filter: invert(1);
+  opacity: 0.3;
+}
+
+.modal__confirmation-text {
+  max-width: 367px;
+  margin: 0 auto 40px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+}
+
+.modal__confirm-delete,
+.modal__cancel {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__confirm-delete {
+  margin-bottom: 24px;
+  color: #ff4d00;
+}
+
+.modal__cancel {
+  color: #000;
+}
+
+.modal__confirm-delete:hover,
+.modal__cancel:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 760px) {
+  .modal__content_type_confirmation {
+    width: 100%;
+    min-height: 0;
+    padding: 60px 20px;
+  }
+}

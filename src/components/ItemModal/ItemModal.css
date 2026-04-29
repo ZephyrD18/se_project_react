@@ -2,7 +2,7 @@
 
 .modal__content_type_image {
   position: relative;
-  width: 456px;
+  width: 498px;
   border-radius: 16px;
   padding: 0;
   overflow: hidden;
@@ -11,12 +11,17 @@
 
 .modal__image {
   display: block;
-  width: 456px;
-  height: 456px;
+  width: 498px;
+  height: 498px;
   object-fit: cover;
 }
 
 .modal__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-sizing: border-box;
+  min-height: 112px;
   padding: 20px 32px 32px;
   background-color: #ffffff;
 }
@@ -37,4 +42,47 @@
   font-size: 20px;
   line-height: 24px;
   color: #000000;
+}
+
+.modal__delete-btn {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ff4d00;
+}
+
+.modal__delete-btn:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 560px) {
+  .modal__content_type_image {
+    width: 100%;
+    max-width: 498px;
+    border-radius: 16px;
+  }
+
+  .modal__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .modal__footer {
+    min-height: 104px;
+    padding: 20px;
+  }
+
+  .modal__caption,
+  .modal__weather,
+  .modal__delete-btn {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }

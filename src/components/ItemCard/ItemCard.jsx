@@ -2,10 +2,10 @@ import "./ItemCard.css";
 
 function ItemCard({ item, onCardClick }) {
   return (
-    <article className="card" onClick={() => onCardClick(item)}>
-      <h2 className="card__name">{item.name}</h2>
+    <button type="button" className="card" onClick={() => onCardClick(item)}>
+      <span className="card__name">{item.name}</span>
       <img src={item.imageUrl} alt={item.name} className="card__image" />
-    </article>
+    </button>
   );
 }
 

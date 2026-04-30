@@ -32,8 +32,8 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
     isValidUrl(values.imageUrl) &&
     values.weather !== "";
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     if (!isFormValid) {
       return;

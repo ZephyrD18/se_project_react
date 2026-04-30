@@ -4,13 +4,13 @@ import closeIcon from "../../assets/CloseButton.svg";
 function Modal({ isOpen, onClose, contentClassName, children }) {
   const overlayMouseDownRef = useRef(false);
 
-  const handleMouseDown = (evt) => {
-    overlayMouseDownRef.current = evt.target === evt.currentTarget;
+  const handleMouseDown = (event) => {
+    overlayMouseDownRef.current = event.target === event.currentTarget;
   };
 
-  const handleMouseUp = (evt) => {
+  const handleMouseUp = (event) => {
     const startedOnOverlay = overlayMouseDownRef.current;
-    const endedOnOverlay = evt.target === evt.currentTarget;
+    const endedOnOverlay = event.target === event.currentTarget;
 
     if (startedOnOverlay && endedOnOverlay) {
       onClose();

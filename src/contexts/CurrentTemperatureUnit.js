@@ -1,1 +1,3 @@
-export { CurrentTemperatureUnitContext } from "./CurrentTemperatureUnitContext";
+import { createContext } from "react";
+
+export const CurrentTemperatureUnitContext = createContext();

@@ -1,17 +1,16 @@
 import { apiKey, coordinates } from "./constants";
+import { checkResponse } from "./checkResponse";
 
-function checkResponse(res) {
-  if (!res.ok) {
-    return Promise.reject(`Error: ${res.status}`);
-  }
-
-  return res.json();
-}
+const HOT_TEMPERATURE_MIN = 86;
+const WARM_TEMPERATURE_MIN = 66;
+const FAHRENHEIT_FREEZING_POINT = 32;
+const CELSIUS_CONVERSION_NUMERATOR = 5;
+const CELSIUS_CONVERSION_DENOMINATOR = 9;
 
 export function getWeatherCondition(temperature) {
-  if (temperature >= 86) {
+  if (temperature >= HOT_TEMPERATURE_MIN) {
     return "hot";
-  } else if (temperature >= 66) {
+  } else if (temperature >= WARM_TEMPERATURE_MIN) {
     return "warm";
   } else {
     return "cold";
@@ -24,7 +23,11 @@ export function filterWeatherData(data) {
   return {
     temp: {
       F: temperature,
-      C: Math.round(((temperature - 32) * 5) / 9),
+      C: Math.round(
+        ((temperature - FAHRENHEIT_FREEZING_POINT) *
+          CELSIUS_CONVERSION_NUMERATOR) /
+          CELSIUS_CONVERSION_DENOMINATOR,
+      ),
     },
     city: data.name,
     type: getWeatherCondition(temperature),

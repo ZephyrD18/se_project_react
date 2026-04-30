@@ -1,6 +1,20 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
+const MIN_NAME_LENGTH = 2;
+const weatherOptions = ["hot", "warm", "cold"];
+
+const isValidUrl = (value) => {
+  if (value.trim().length === 0) return false;
+
+  try {
+    new URL(value);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 function AddItemModal({ isOpen, onAddItem, onClose }) {
   const { values, handleChange, resetForm } = useForm({
     name: "",
@@ -8,23 +22,13 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
     weather: "",
   });
 
-  const isValidUrl = (value) => {
-    if (value.trim().length === 0) return false;
-
-    try {
-      new URL(value);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
-  const nameHasError = values.name.length > 0 && values.name.trim().length < 2;
+  const nameHasError =
+    values.name.length > 0 && values.name.trim().length < MIN_NAME_LENGTH;
   const imageHasError =
     values.imageUrl.length > 0 && !isValidUrl(values.imageUrl);
 
   const isFormValid =
-    values.name.trim().length >= 2 &&
+    values.name.trim().length >= MIN_NAME_LENGTH &&
     isValidUrl(values.imageUrl) &&
     values.weather !== "";
 
@@ -64,7 +68,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
             nameHasError ? "modal__input_type_error" : ""
           }`}
           placeholder="Name"
-          minLength="2"
+          minLength={MIN_NAME_LENGTH}
           required
           value={values.name}
           onChange={handleChange}
@@ -95,41 +99,19 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
       <fieldset className="modal__fieldset">
         <legend className="modal__legend">Select the weather type:</legend>
 
-        <label className="modal__radio-label">
-          <input
-            type="radio"
-            name="weather"
-            className="modal__radio-input"
-            value="hot"
-            checked={values.weather === "hot"}
-            onChange={handleChange}
-          />
-          Hot
-        </label>
-
-        <label className="modal__radio-label">
-          <input
-            type="radio"
-            name="weather"
-            className="modal__radio-input"
-            value="warm"
-            checked={values.weather === "warm"}
-            onChange={handleChange}
-          />
-          Warm
-        </label>
-
-        <label className="modal__radio-label">
-          <input
-            type="radio"
-            name="weather"
-            className="modal__radio-input"
-            value="cold"
-            checked={values.weather === "cold"}
-            onChange={handleChange}
-          />
-          Cold
-        </label>
+        {weatherOptions.map((weatherOption) => (
+          <label key={weatherOption} className="modal__radio-label">
+            <input
+              type="radio"
+              name="weather"
+              className="modal__radio-input"
+              value={weatherOption}
+              checked={values.weather === weatherOption}
+              onChange={handleChange}
+            />
+            {weatherOption[0].toUpperCase() + weatherOption.slice(1)}
+          </label>
+        ))}
       </fieldset>
     </ModalWithForm>
   );

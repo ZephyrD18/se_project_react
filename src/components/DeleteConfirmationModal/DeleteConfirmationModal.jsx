@@ -1,41 +1,29 @@
 import "./DeleteConfirmationModal.css";
-import closeIcon from "../../assets/CloseButton.svg";
+import Modal from "../Modal/Modal";
 
 function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
-  const handleOverlayClose = (evt) => {
-    if (evt.target === evt.currentTarget) {
-      onClose();
-    }
-  };
-
   return (
-    <div
-      className={`modal ${isOpen ? "modal_is-opened" : ""}`}
-      onClick={handleOverlayClose}
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      contentClassName="modal__content_type_confirmation"
     >
-      <div className="modal__content modal__content_type_confirmation">
-        <button type="button" className="modal__close" onClick={onClose}>
-          <img src={closeIcon} alt="Close" className="modal__close-icon" />
-        </button>
+      <p className="modal__confirmation-text">
+        Are you sure you want to delete this item? This action is irreversible.
+      </p>
 
-        <p className="modal__confirmation-text">
-          Are you sure you want to delete this item? This action is
-          irreversible.
-        </p>
+      <button
+        type="button"
+        className="modal__confirm-delete"
+        onClick={onConfirm}
+      >
+        Yes, delete item
+      </button>
 
-        <button
-          type="button"
-          className="modal__confirm-delete"
-          onClick={onConfirm}
-        >
-          Yes, delete item
-        </button>
-
-        <button type="button" className="modal__cancel" onClick={onClose}>
-          Cancel
-        </button>
-      </div>
-    </div>
+      <button type="button" className="modal__cancel" onClick={onClose}>
+        Cancel
+      </button>
+    </Modal>
   );
 }
 

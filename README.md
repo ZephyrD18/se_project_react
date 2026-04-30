@@ -1,38 +1,36 @@
-# WTWR
+# WTWR (What to Wear)
 
-WTWR (What to Wear) is a React weather app that recommends clothing based on the current weather. It fetches live weather data, loads clothing items from a local JSON Server mock API, and lets users add, preview, and delete garments.
+WTWR is a React application that helps users decide what to wear based on the current weather. The app gets live weather data, matches garments to the active weather type, and provides a small wardrobe interface for adding, previewing, and deleting clothing items.
 
-## Functionality
+## Project Features
 
-- Displays the current date and weather location
-- Fetches current weather data from the OpenWeather API
-- Switches temperature display between Fahrenheit and Celsius
-- Filters main-page clothing cards by current weather type
-- Provides a profile page with all clothing items
-- Adds new garments through a controlled form
-- Opens item preview and delete confirmation modals
-- Stores clothing items through a JSON Server mock API
+- Current weather display with location, date, temperature, and weather-based visuals
+- Fahrenheit/Celsius temperature toggle powered by React context
+- Weather-based filtering on the main clothing card feed
+- Profile route with the full clothing collection and user sidebar
+- Controlled add-garment form with client-side validation
+- Item preview modal and delete confirmation flow
+- Overlay-click and Escape-key modal closing behavior
+- Clothing item persistence through a local JSON Server mock API
+- Live weather data from the OpenWeather API
 
-## Technologies and Techniques
+## Technologies Used
 
-- React with functional components and hooks
+- React
 - React Router
-- Context API
-- Custom `useForm` hook
 - Vite
-- JSON Server
+- JavaScript
+- CSS
+- OpenWeather API
 - Fetch API
-- Component-scoped CSS
-- BEM-style class naming
+- JSON Server
+- ESLint
+- Prettier
 
-## Running the Project
+## Implementation Notes
 
-Install dependencies, then run the mock API and React app in separate terminals:
+The application is built with functional React components and hooks. It uses React Router for page navigation, Context API for the shared temperature unit, a reusable modal foundation for dialog behavior, and a custom `useForm` hook to manage form state. API utilities keep the OpenWeather and clothing item requests separate from the component layer, while component-scoped CSS and BEM-style class names keep the UI styles organized.
 
-```bash
-npm install
-npm run server
-npm run dev
-```
+## Project Pitch Video
 
-The mock API runs at `http://localhost:3001`.
+Check out [my project pitch video](https://www.loom.com/share/71c93c98196a4fa892024666bc1751b5), where I walk through WTWR and share some of the challenges I faced while building it.

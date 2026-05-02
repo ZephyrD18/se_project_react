@@ -22,7 +22,7 @@ function Main({ weatherData, clothingItems, onCardClick }) {
 
       <ul className="main__cards-list">
         {filteredCards.map((item) => (
-          <li key={item._id || item.id} className="main__card-item">
+          <li key={item._id ?? item.id} className="main__card-item">
             <ItemCard item={item} onCardClick={onCardClick} />
           </li>
         ))}

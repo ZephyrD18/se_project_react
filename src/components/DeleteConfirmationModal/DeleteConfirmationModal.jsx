@@ -1,7 +1,7 @@
 import "./DeleteConfirmationModal.css";
 import Modal from "../Modal/Modal";
 
-function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
+function DeleteConfirmationModal({ isOpen, onClose, onConfirm, buttonText }) {
   return (
     <Modal
       isOpen={isOpen}
@@ -17,7 +17,7 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
         className="modal__confirm-delete"
         onClick={onConfirm}
       >
-        Yes, delete item
+        {buttonText}
       </button>
 
       <button type="button" className="modal__cancel" onClick={onClose}>

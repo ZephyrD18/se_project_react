@@ -15,7 +15,7 @@ const isValidUrl = (value) => {
   }
 };
 
-function AddItemModal({ isOpen, onAddItem, onClose }) {
+function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
   const { values, handleChange, resetForm } = useForm({
     name: "",
     imageUrl: "",
@@ -53,7 +53,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
     <ModalWithForm
       title="New garment"
       name="add-garment"
-      buttonText="Add garment"
+      buttonText={buttonText}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

@@ -1,5 +1,5 @@
 import { apiKey, coordinates } from "./constants";
-import { checkResponse } from "./checkResponse";
+import { checkResponse } from "./api";
 
 const HOT_TEMPERATURE_MIN = 86;
 const WARM_TEMPERATURE_MIN = 66;

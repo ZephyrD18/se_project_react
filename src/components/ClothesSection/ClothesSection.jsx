@@ -1,5 +1,6 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
+import { getItemId } from "../../utils/item";
 
 function ClothesSection({ clothingItems, onCardClick, onAddClick }) {
   return (
@@ -17,7 +18,7 @@ function ClothesSection({ clothingItems, onCardClick, onAddClick }) {
 
       <ul className="clothes-section__cards-list">
         {clothingItems.map((item) => (
-          <li key={item._id || item.id} className="clothes-section__card-item">
+          <li key={getItemId(item)} className="clothes-section__card-item">
             <ItemCard item={item} onCardClick={onCardClick} />
           </li>
         ))}

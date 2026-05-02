@@ -4,8 +4,8 @@ export function useForm(initialValues = {}) {
   const initialValuesRef = useRef(initialValues);
   const [values, setValues] = useState(initialValuesRef.current);
 
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
     setValues((currentValues) => ({
       ...currentValues,

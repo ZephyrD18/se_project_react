@@ -15,7 +15,7 @@ const isValidUrl = (value) => {
   }
 };
 
-function AddItemModal({ isOpen, onAddItem, onClose }) {
+function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
   const { values, handleChange, resetForm } = useForm({
     name: "",
     imageUrl: "",
@@ -32,8 +32,8 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
     isValidUrl(values.imageUrl) &&
     values.weather !== "";
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     if (!isFormValid) {
       return;
@@ -53,7 +53,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
     <ModalWithForm
       title="New garment"
       name="add-garment"
-      buttonText="Add garment"
+      buttonText={buttonText}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

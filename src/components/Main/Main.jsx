@@ -3,6 +3,7 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnit";
+import { getItemId } from "../../utils/item";
 
 function Main({ weatherData, clothingItems, onCardClick }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
@@ -22,7 +23,7 @@ function Main({ weatherData, clothingItems, onCardClick }) {
 
       <ul className="main__cards-list">
         {filteredCards.map((item) => (
-          <li key={item._id || item.id} className="main__card-item">
+          <li key={getItemId(item)} className="main__card-item">
             <ItemCard item={item} onCardClick={onCardClick} />
           </li>
         ))}

@@ -11,6 +11,7 @@ import Profile from "../Profile/Profile";
 import { getWeather } from "../../utils/weatherApi";
 import { addItem, deleteItem, getItems } from "../../utils/api";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnit";
+import { getItemId } from "../../utils/item";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -24,6 +25,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardToDelete, setCardToDelete] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -41,6 +43,8 @@ function App() {
   };
 
   const handleAddItem = (item, resetForm) => {
+    setIsLoading(true);
+
     addItem(item)
       .then((newItem) => {
         setClothingItems((currentItems) => [newItem, ...currentItems]);
@@ -49,6 +53,9 @@ function App() {
       })
       .catch((err) => {
         console.error("Add item error:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -60,17 +67,24 @@ function App() {
   const handleCardDelete = () => {
     if (!cardToDelete) return;
 
-    const cardId = cardToDelete._id || cardToDelete.id;
+    const cardId = getItemId(cardToDelete);
+
+    if (cardId === undefined) return;
+
+    setIsLoading(true);
 
     deleteItem(cardId)
       .then(() => {
         setClothingItems((currentItems) =>
-          currentItems.filter((item) => (item._id || item.id) !== cardId),
+          currentItems.filter((item) => getItemId(item) !== cardId),
         );
         handleCloseModal();
       })
       .catch((err) => {
         console.error("Delete item error:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -101,8 +115,8 @@ function App() {
   useEffect(() => {
     if (!activeModal) return undefined;
 
-    const handleEscClose = (evt) => {
-      if (evt.key === "Escape") {
+    const handleEscClose = (event) => {
+      if (event.key === "Escape") {
         handleCloseModal();
       }
     };
@@ -150,6 +164,7 @@ function App() {
           isOpen={activeModal === "add-garment"}
           onAddItem={handleAddItem}
           onClose={handleCloseModal}
+          buttonText={isLoading ? "Saving..." : "Add garment"}
         />
 
         <ItemModal
@@ -163,6 +178,7 @@ function App() {
           isOpen={activeModal === "delete-confirmation"}
           onClose={handleCloseModal}
           onConfirm={handleCardDelete}
+          buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

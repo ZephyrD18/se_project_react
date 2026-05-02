@@ -11,6 +11,7 @@ import Profile from "../Profile/Profile";
 import { getWeather } from "../../utils/weatherApi";
 import { addItem, deleteItem, getItems } from "../../utils/api";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnit";
+import { getItemId } from "../../utils/item";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -66,14 +67,16 @@ function App() {
   const handleCardDelete = () => {
     if (!cardToDelete) return;
 
-    const cardId = cardToDelete._id ?? cardToDelete.id;
+    const cardId = getItemId(cardToDelete);
+
+    if (cardId === undefined) return;
 
     setIsLoading(true);
 
     deleteItem(cardId)
       .then(() => {
         setClothingItems((currentItems) =>
-          currentItems.filter((item) => (item._id ?? item.id) !== cardId),
+          currentItems.filter((item) => getItemId(item) !== cardId),
         );
         handleCloseModal();
       })

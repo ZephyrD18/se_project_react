@@ -1,23 +1,67 @@
 .sidebar {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
   min-width: 229px;
   height: fit-content;
 }
 
-.sidebar__avatar {
+.sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sidebar__avatar,
+.sidebar__avatar-placeholder {
   width: 56px;
   height: 56px;
   border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.sidebar__avatar {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+}
+
+.sidebar__avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
 }
 
 .sidebar__username {
   margin: 0;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+}
+
+.sidebar__edit-btn,
+.sidebar__signout-btn {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.sidebar__edit-btn:hover,
+.sidebar__signout-btn:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 560px) {
@@ -25,12 +69,15 @@
     min-width: 0;
   }
 
-  .sidebar__avatar {
+  .sidebar__avatar,
+  .sidebar__avatar-placeholder {
     width: 48px;
     height: 48px;
   }
 
-  .sidebar__username {
+  .sidebar__username,
+  .sidebar__edit-btn,
+  .sidebar__signout-btn {
     font-size: 20px;
     line-height: 24px;
   }

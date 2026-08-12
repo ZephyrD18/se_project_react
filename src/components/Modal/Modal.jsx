@@ -1,7 +1,8 @@
 import { useRef } from "react";
+import "./Modal.css";
 import closeIcon from "../../assets/CloseButton.svg";
 
-function Modal({ isOpen, onClose, contentClassName, children }) {
+function Modal({ isOpen, onClose, contentClassName, ariaLabel, children }) {
   const overlayMouseDownRef = useRef(false);
 
   const handleMouseDown = (event) => {
@@ -25,9 +26,24 @@ function Modal({ isOpen, onClose, contentClassName, children }) {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
     >
-      <div className={`modal__content ${contentClassName}`}>
-        <button type="button" className="modal__close" onClick={onClose}>
-          <img src={closeIcon} alt="Close" className="modal__close-icon" />
+      <div
+        className={`modal__content ${contentClassName}`}
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!isOpen}
+        aria-label={ariaLabel}
+      >
+        <button
+          type="button"
+          className="modal__close"
+          onClick={onClose}
+          aria-label="Close dialog"
+        >
+          <img
+            src={closeIcon}
+            alt="Close dialog"
+            className="modal__close-icon"
+          />
         </button>
 
         {children}

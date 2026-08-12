@@ -1,5 +1,3 @@
-@import url("../ModalWithForm/ModalWithForm.css");
-
 .modal__content_type_confirmation {
   width: 670px;
   min-height: 280px;
@@ -8,15 +6,10 @@
   text-align: center;
 }
 
-.modal__content_type_confirmation .modal__close-icon {
-  filter: invert(1);
-  opacity: 0.3;
-}
-
 .modal__confirmation-text {
   max-width: 367px;
   margin: 0 auto 40px;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
@@ -31,7 +24,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;

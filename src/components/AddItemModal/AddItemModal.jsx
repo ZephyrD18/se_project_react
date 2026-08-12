@@ -1,25 +1,18 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
+import {
+  MAX_NAME_LENGTH,
+  MIN_NAME_LENGTH,
+  isValidUrl,
+} from "../../utils/validation";
 
-const MIN_NAME_LENGTH = 2;
 const weatherOptions = ["hot", "warm", "cold"];
 
-const isValidUrl = (value) => {
-  if (value.trim().length === 0) return false;
-
-  try {
-    new URL(value);
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
+function AddItemModal({ isOpen, isLoading, onAddItem, onClose, buttonText }) {
   const { values, handleChange, resetForm } = useForm({
     name: "",
     imageUrl: "",
-    weather: "",
+    weather: "hot",
   });
 
   const nameHasError =
@@ -29,8 +22,10 @@ function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
 
   const isFormValid =
     values.name.trim().length >= MIN_NAME_LENGTH &&
+    values.name.trim().length <= MAX_NAME_LENGTH &&
     isValidUrl(values.imageUrl) &&
-    values.weather !== "";
+    values.weather !== "" &&
+    !isLoading;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,13 +64,14 @@ function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
           }`}
           placeholder="Name"
           minLength={MIN_NAME_LENGTH}
+          maxLength={MAX_NAME_LENGTH}
           required
           value={values.name}
           onChange={handleChange}
         />
-        <span className="modal__error">
-          {nameHasError ? "Minimum 2 characters required" : ""}
-        </span>
+        {nameHasError && (
+          <span className="modal__error">Minimum 2 characters required</span>
+        )}
       </label>
 
       <label className="modal__label">
@@ -91,16 +87,23 @@ function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
           value={values.imageUrl}
           onChange={handleChange}
         />
-        <span className="modal__error">
-          {imageHasError ? "Must be a valid URL" : ""}
-        </span>
+        {imageHasError && (
+          <span className="modal__error">Must be a valid URL</span>
+        )}
       </label>
 
       <fieldset className="modal__fieldset">
         <legend className="modal__legend">Select the weather type:</legend>
 
         {weatherOptions.map((weatherOption) => (
-          <label key={weatherOption} className="modal__radio-label">
+          <label
+            key={weatherOption}
+            className={`modal__radio-label ${
+              values.weather === weatherOption
+                ? "modal__radio-label_checked"
+                : ""
+            }`}
+          >
             <input
               type="radio"
               name="weather"

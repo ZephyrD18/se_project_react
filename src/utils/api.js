@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+import { apiBaseUrl } from "./constants";
 
 export function checkResponse(res) {
   if (!res.ok) {
@@ -9,21 +9,54 @@ export function checkResponse(res) {
 }
 
 export function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${apiBaseUrl}/items`).then(checkResponse);
 }
 
-export function addItem({ name, imageUrl, weather }) {
-  return fetch(`${baseUrl}/items`, {
+export function addItem({ name, imageUrl, weather }, token) {
+  return fetch(`${apiBaseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, imageUrl, weather }),
   }).then(checkResponse);
 }
 
-export function deleteItem(itemId) {
-  return fetch(`${baseUrl}/items/${itemId}`, {
+export function deleteItem(itemId, token) {
+  return fetch(`${apiBaseUrl}/items/${itemId}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+export function updateProfile({ name, avatar }, token) {
+  return fetch(`${apiBaseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
+export function addCardLike(itemId, token) {
+  return fetch(`${apiBaseUrl}/items/${itemId}/likes`, {
+    method: "PUT",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+export function removeCardLike(itemId, token) {
+  return fetch(`${apiBaseUrl}/items/${itemId}/likes`, {
+    method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 }

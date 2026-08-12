@@ -1,11 +1,10 @@
 .main {
-  padding-top: 28px;
   flex: 1;
 }
 
 .main__description {
-  margin: 40px 0 34px;
-  font-family: "Cabinet Grotesk", sans-serif;
+  margin: 40px 0 35px;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
@@ -37,10 +36,6 @@
 }
 
 @media screen and (max-width: 560px) {
-  .main {
-    padding-top: 20px;
-  }
-
   .main__description {
     margin: 32px 0 20px;
     font-size: 16px;

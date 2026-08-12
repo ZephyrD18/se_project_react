@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  min-height: 40px;
 }
 
 /* LEFT SIDE */
@@ -13,18 +14,29 @@
 }
 
 .header__logo {
+  display: block;
+  flex: 0 0 89px;
+  width: 89px;
+  height: 40px;
   margin: 0;
-  font-family: "Cabinet Grotesk", sans-serif;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 100%;
   color: #000;
   text-decoration: none;
+  white-space: nowrap;
+}
+
+.header__logo-text {
+  display: inline-block;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: normal;
+  transform: scaleX(1.1);
+  transform-origin: left center;
 }
 
 .header__date-location {
   margin: 0;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
@@ -35,23 +47,38 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  min-width: 0;
 }
 
-.header__add-btn {
+.header__add-btn,
+.header__auth-btn {
+  margin: 0;
+  padding: 0;
   border: none;
   background: none;
   cursor: pointer;
 
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  white-space: nowrap;
+}
+
+.header__auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .header__username {
   margin: 0;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
 }
@@ -60,20 +87,42 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
   color: #000;
   text-decoration: none;
 }
 
 .header__avatar {
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  object-fit: cover;
+}
+
+.header__avatar-placeholder {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .header__logo:hover,
 .header__profile-link:hover,
-.header__add-btn:hover {
+.header__add-btn:hover,
+.header__auth-btn:hover {
   opacity: 0.6;
 }
 
@@ -106,6 +155,7 @@
 
   .header__date-location,
   .header__add-btn,
+  .header__auth-btn,
   .header__username {
     font-size: 16px;
     line-height: 20px;

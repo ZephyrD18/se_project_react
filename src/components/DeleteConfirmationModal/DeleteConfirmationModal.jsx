@@ -7,6 +7,7 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, buttonText }) {
       isOpen={isOpen}
       onClose={onClose}
       contentClassName="modal__content_type_confirmation"
+      ariaLabel="Delete item confirmation"
     >
       <p className="modal__confirmation-text">
         Are you sure you want to delete this item? This action is irreversible.

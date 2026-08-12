@@ -9,7 +9,7 @@ function WeatherCard({ weatherData }) {
   const temp = weatherData.temp[currentTemperatureUnit];
 
   return (
-    <section className="weather-card">
+    <section className="weather-card" aria-label="Current weather">
       <p className="weather-card__temp">
         {temp}&deg;{currentTemperatureUnit}
       </p>

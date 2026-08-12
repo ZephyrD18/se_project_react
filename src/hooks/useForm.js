@@ -13,8 +13,8 @@ export function useForm(initialValues = {}) {
     }));
   };
 
-  const resetForm = useCallback(() => {
-    setValues(initialValuesRef.current);
+  const resetForm = useCallback((nextValues = initialValuesRef.current) => {
+    setValues(nextValues);
   }, []);
 
   return { values, handleChange, resetForm };

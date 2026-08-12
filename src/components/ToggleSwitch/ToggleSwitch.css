@@ -14,7 +14,10 @@
 
 .toggle-switch__slider {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -23,11 +26,16 @@
   border-radius: 20px;
   background-color: #fff;
   color: #7e7e7e;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
   line-height: 17px;
   overflow: hidden;
+}
+
+.toggle-switch:hover .toggle-switch__slider,
+.toggle-switch__checkbox:focus-visible + .toggle-switch__slider {
+  border-color: #000000;
 }
 
 .toggle-switch__slider::before {
@@ -48,22 +56,10 @@
   text-align: center;
 }
 
-.toggle-switch__label_type_f {
+.toggle-switch__label_active {
   color: #fff;
 }
 
 .toggle-switch__checkbox:checked + .toggle-switch__slider::before {
   transform: translateX(28px);
-}
-
-.toggle-switch__checkbox:checked
-  + .toggle-switch__slider
-  .toggle-switch__label_type_f {
-  color: #7e7e7e;
-}
-
-.toggle-switch__checkbox:checked
-  + .toggle-switch__slider
-  .toggle-switch__label_type_c {
-  color: #fff;
 }

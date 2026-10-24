@@ -1,5 +1,6 @@
-@import url("./vendor/normalize.css");
-@import url("./vendor/fonts.css");
+:root {
+  line-height: 1.15;
+}
 
 :root,
 .page,
@@ -11,4 +12,10 @@
 .page {
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   background-color: #f3f3f3;
+}
+
+button,
+input {
+  font: inherit;
+  margin: 0;
 }

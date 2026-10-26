@@ -75,4 +75,4 @@ npm run build
 
 ## Project Pitch Video
 
-Watch the [WTWR project pitch](https://www.loom.com/share/71c93c98196a4fa892024666bc1751b5).
+Watch the [WTWR project pitch](https://www.loom.com/share/ee9be9be09544c9e803cb46ab5aa3840).
